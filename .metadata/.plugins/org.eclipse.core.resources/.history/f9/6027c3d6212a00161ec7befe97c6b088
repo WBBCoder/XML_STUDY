@@ -1,0 +1,60 @@
+package com.imooc.dmtest.test;
+
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;	//w3c
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+public class DOMTest {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//创建一个DocumentBuilderFactory对象
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		try {
+			//创建一个DocumentBuilder对象
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			//通过DocumentBuilder对象的parse方法加载book.xml，book.xml放在当前目录下
+			Document d = db.parse("books.xml");
+			//获取所有的book节点的集合
+			NodeList bookList = d.getElementsByTagName("book");
+			//for循环遍历每一个book节点
+			//通过NodeList.getLength()可以获取bookList的长度
+			System.out.println("一个有"+bookList.getLength()+"书");
+			for(int i=0; i<bookList.getLength(); i++){
+				System.out.println("====================" + "下面开始遍历第" + (i+1) + "本书" + "==============");
+				
+				//通常针对不知道有多少个节点的情况
+/*				//通过item(i)方法获取一个book节点，nodeList的索引值从0开始
+				Node n = bookList.item(i);
+				//获取n节点的所有属性集合
+				NamedNodeMap attrs = n.getAttributes();
+				System.out.println("第" + i+"本书共有" + attrs.getLength()+"本");
+				//遍历book的属性
+				for(int j=0; j<attrs.getLength();  j++){
+					//通过item(i)获取某个属性
+					Node attr = attrs.item(j);
+					//获取属性名
+					System.out.print("属性名："+attr.getNodeName());
+					//获取属性值
+					System.out.println("属性值：" + attr.getNodeValue());
+				}																*/
+				
+			}
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
