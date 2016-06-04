@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class>
+	<student id="1">
+		<name>石头</name>
+		<hobby>video</hobby>
+	</student>
+	<student id="1">
+		<name>卢菊花</name>
+		<hobby>video game</hobby>
+		<personality>装B</personality>
+	</student>
+</class>
