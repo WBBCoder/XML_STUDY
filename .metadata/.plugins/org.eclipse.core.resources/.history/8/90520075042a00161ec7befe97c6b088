@@ -1,0 +1,50 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+
+public class JDBCTest {
+	public static void main(String args[]){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			String url="jdbc:mysql://127.0.0.1:3306/TRAIL_DATABASE";
+			String user="root";
+			String password="root";
+			Connection conn = (Connection) DriverManager.getConnection(url, user, password);
+			if(!conn.isClosed())
+				System.out.println("succeeded connection to the database!");
+			Statement stm = conn.createStatement();
+			
+			conn.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static boolean testAddData(Statement stm){
+		boolean  isAdd= false;
+		String sql = "INSERT INTO student VALUES(\"S00004\",\"小明\",\"男\")";
+		try{
+			isAdd = stm.execute(sql);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return isAdd;
+	}
+	
+	public static boolean testDelete(Statement stm){
+		ResultSet rs = null;
+		boolean isDelete = false;
+		String sql = "DELETE FROM student WHERE sno=\"s00001 \"";
+		try{
+			isDelete = stm.execute(sql);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return isDelete;
+	}
+	
+}
